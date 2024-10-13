@@ -345,7 +345,7 @@ contract PutOptionTest is Test {
 
     function testExecuteFails() public {
         uint256 _premium = 10e18;
-        uint256 _strikePrice = 3000e8;
+        uint256 _strikePrice = 2000e8;
         uint256 _quantity = 1e16;
         uint256 _expiration = block.timestamp + 1 weeks;
 
@@ -354,7 +354,7 @@ contract PutOptionTest is Test {
         PutOption putOption2 = new PutOption(ethToken, creator, _premium, _strikePrice, _quantity, _expiration, usdtToken, priceOracle);
 
         assertEq(putOption2.inited(), false);
-        assertEq(putOption2.strikeValue(), 30e18);
+        assertEq(putOption2.strikeValue(), 20e18);
 
         ERC20 ethERC20 = ERC20(ethToken);
         ERC20 usdtERC20 = ERC20(usdtToken);

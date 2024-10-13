@@ -40,7 +40,7 @@ contract FactoryTests is Test {
         assertEq(callOption.strikePrice(), strikePrice);
         assertEq(callOption.quantity(), quantity);
         assertEq(callOption.expiration(), expiration);
-        assertEq(callOption.strikeValue(), 6e17);
+        assertEq(callOption.strikeValue(), 6e5);
     }
 
     function testCreatePutOption() public {

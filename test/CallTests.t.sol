@@ -19,7 +19,7 @@ contract CallOptionTest is Test {
 
     function setUp() public {
         uint256 premium = 10e18;
-        uint256 strikePrice = 3000e8;
+        uint256 strikePrice = 2000e8;
         uint256 quantity = 1e16;
         uint256 expiration = block.timestamp + 1 weeks;
 
@@ -52,15 +52,15 @@ contract CallOptionTest is Test {
         assertEq(callOption.buyer() != address(0), true);
         assertEq(callOption.executed(), false);
         assertEq(callOption.buyer(), buyer);
-        assertEq(callOption.strikeValue(), 30e18);
+        assertEq(callOption.strikeValue(), 20e18);
 
         usdtERC20.approve(address(callOption), callOption.strikeValue());
         callOption.execute();
         vm.stopPrank();
 
         assertEq(ethERC20.balanceOf(buyer), callOption.quantity());
-        assertEq(usdtERC20.balanceOf(buyer), 60e18);
-        assertEq(usdtERC20.balanceOf(creator), 40e18);
+        assertEq(usdtERC20.balanceOf(buyer), 70e18);
+        assertEq(usdtERC20.balanceOf(creator), 30e18);
         assertEq(callOption.executed(), true);
     }
 
@@ -89,7 +89,7 @@ contract CallOptionTest is Test {
         assertEq(callOption.buyer() != address(0), true);
         assertEq(callOption.executed(), false);
         assertEq(callOption.buyer(), buyer);
-        assertEq(callOption.strikeValue(), 30e18);
+        assertEq(callOption.strikeValue(), 20e18);
 
         usdtERC20.approve(address(callOption), callOption.strikeValue());
         vm.warp(block.timestamp + 10 days);
@@ -144,7 +144,7 @@ contract CallOptionTest is Test {
         assertEq(callOption.buyer() != address(0), true);
         assertEq(callOption.executed(), false);
         assertEq(callOption.buyer(), buyer);
-        assertEq(callOption.strikeValue(), 30e18);
+        assertEq(callOption.strikeValue(), 20e18);
         vm.stopPrank();
 
         assertEq(callOption.premium(), 10e18);
@@ -181,7 +181,7 @@ contract CallOptionTest is Test {
         assertEq(callOption.buyer() != address(0), true);
         assertEq(callOption.executed(), false);
         assertEq(callOption.buyer(), buyer);
-        assertEq(callOption.strikeValue(), 30e18);
+        assertEq(callOption.strikeValue(), 20e18);
 
         address buyer2 = makeAddr("buyer2");
 
@@ -217,7 +217,7 @@ contract CallOptionTest is Test {
         assertEq(callOption.buyer() != address(0), true);
         assertEq(callOption.executed(), false);
         assertEq(callOption.buyer(), buyer);
-        assertEq(callOption.strikeValue(), 30e18);
+        assertEq(callOption.strikeValue(), 20e18);
 
         vm.stopPrank();
 
@@ -284,7 +284,7 @@ contract CallOptionTest is Test {
         assertEq(callOption.buyer() != address(0), true);
         assertEq(callOption.executed(), false);
         assertEq(callOption.buyer(), buyer);
-        assertEq(callOption.strikeValue(), 30e18);
+        assertEq(callOption.strikeValue(), 20e18);
 
         vm.stopPrank();
 
@@ -325,7 +325,7 @@ contract CallOptionTest is Test {
         assertEq(callOption.buyer() != address(0), true);
         assertEq(callOption.executed(), false);
         assertEq(callOption.buyer(), buyer);
-        assertEq(callOption.strikeValue(), 30e18);
+        assertEq(callOption.strikeValue(), 20e18);
 
         vm.warp(block.timestamp + 8 days);
         vm.prank(creator);

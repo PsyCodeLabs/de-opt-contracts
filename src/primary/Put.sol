@@ -173,8 +173,7 @@ contract PutOption is OptionInterface {
      *     the strike price, it also sets the value of executedPrice to the latest price
      */
     function _checkPosition() internal returns (bool) {
-        (, int256 price,, uint256 updatedAt,) = priceOracle.latestRoundData();
-        require(updatedAt + 10 minutes > block.timestamp, "Price needs to be updated first");
+        (, int256 price,,,) = priceOracle.latestRoundData();
         executedPrice = uint256(price);
         return uint256(price) <= strikePrice;
     }
